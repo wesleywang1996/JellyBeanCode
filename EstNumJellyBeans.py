@@ -32,8 +32,8 @@ class NumJellyEstimator:
 
         # Check that the value is between zero and one.
         if ((frac <= 0.0) or (frac >= 1.0)):
-            print "\nError: Fraction of land used for sugar must be between"\
-                  +" 0.0 and 1.0.\n"
+            print("\nError: Fraction of land used for sugar must be between"\
+                  +" 0.0 and 1.0.\n")
             sys.exit()
 
         # Store the fraction.
@@ -45,8 +45,13 @@ class NumJellyEstimator:
     def set_world_pop(self, people):
 
         # NE24: Add a test for type here
+        assert type(people) is float, \
+            "Error: World Population must be set to float"
  
-        # NE24: Add a test for value here
+        # NE24: Add a test for value her
+        if(people <= 0):
+            print("\nError: World Population must be greater than 0. \n")
+        sys.exit() 
 
         # Store the fraction.
         self.worldPop = people
@@ -56,8 +61,14 @@ class NumJellyEstimator:
     def set_frac_ppl_loving_pink(self, frac):
 
         # NE24: Add a test for type here
+        assert type(frac) is float, \
+            "Error: Fraction of pink lovers must be set to float."
 
         # NE24: Add a test for value here
+        if((frac<=0.0) or (frac >= 1.0)):
+            print("\n Fraction of people who love pink must be"\
+                  +" between 0.0 and 1.0.\n") 
+        sys.exit()
 
         # Store the fraction.
         self.fracPplLovingPink = frac
@@ -77,8 +88,8 @@ class NumJellyEstimator:
         n = self.fracLand4Sugar * self.worldPop * self.scalingConst
         # If this value is zero, it means that some value didn't get set.
         if (n == 0.0):
-            print "\nError: fraction of land for sugar and world population"\
-                  +"must be set before computing estimate.\n"
+            print("\nError: fraction of land for sugar and world population"\
+                  +"must be set before computing estimate.\n")
         return int(n)
 
 
@@ -89,9 +100,9 @@ class NumJellyEstimator:
             (1.0 - self.fracPplLovingPink)
         # If this value is zero, it means that some value didn't get set.
         if (n == 0.0):
-            print "\nError: fraction of land for sugar, world population, and"\
+            print("\nError: fraction of land for sugar, world population, and"\
                   +"fraction of people loving pink must be set before "\
-                  +"computing estimate.\n"
+                  +"computing estimate.\n")
 
         # NE24: What other checks might be useful? What is a better way to do this?
 
